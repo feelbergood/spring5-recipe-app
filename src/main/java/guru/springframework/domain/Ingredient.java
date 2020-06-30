@@ -1,6 +1,9 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
+
+import org.hibernate.property.access.spi.Setter;
+
 import java.math.BigDecimal;
 
 /**
@@ -19,6 +22,17 @@ public class Ingredient {
 
     @ManyToOne
     private Recipe recipe;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    private UoM unit;
+
+    public UoM getUoM() {
+        return unit;
+    }
+
+    public void setUoM(UoM unit) {
+        this.unit = unit;
+    }
 
     public Long getId() {
         return id;
